@@ -1,0 +1,65 @@
+/* HERO SLIDER */
+
+var swiperHero = new Swiper(".swiper-hero", {
+  spaceBetween: 0,
+  centeredSlides: true,
+  loop:true,
+  effect: "fade",
+  autoplay: {
+    delay: 3000,
+    disableOnInteraction: false,
+  },
+});
+
+
+/* SWITCH TABS */
+
+// Query alle tablinks en tabcontent
+tabLinks = document.querySelectorAll('.carousel-nav-item');
+tabContent = document.querySelectorAll('.carousel-img');
+
+// Maak eerste tablink en tabcontent active
+tabLinks[0].classList.add('active');
+tabContent[0].classList.add('active');
+
+// Set data attributes for indexing tabs + content
+tabContent.forEach((content, index)=>{
+  content.setAttribute('data-tab', index);
+})
+
+tabLinks.forEach((tab, index) => {
+   tab.setAttribute('data-tab', index);
+   tab.addEventListener('mouseover', ()=>{
+      
+      // Remove active class on all tabs first
+      tabLinks.forEach(tab => {tab.classList.remove('active') })
+
+      // Add active class on clicked tab
+      tab.classList.add('active');
+
+      // Remove active class on all content first
+      tabContent.forEach(content => {content.classList.remove('active') })
+   
+      // Add class to content based on current tab index
+      document.querySelector(".carousel-img[data-tab='"+ index +"']").classList.add('active');
+    })
+});
+
+
+/* REVIEW SLIDER */
+
+    var swiper2 = new Swiper(".swiper-review", {
+      breakpoints:{
+        992:{
+          slidesPerView: 3,
+          spaceBetween: 30,
+        }
+      },
+      slidesPerView: 1.2,
+      spaceBetween: 10,
+      loop: true,
+      navigation: {
+        nextEl: ".swiper-btn-next-2",
+        prevEl: ".swiper-btn-prev-2",
+      },
+    });
